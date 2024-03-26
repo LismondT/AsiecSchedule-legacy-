@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApekSchedule.Views.SchedulePage"
+             xmlns:viewmodels="clr-namespace:ApekSchedule.ViewModels"
+             x:DataType="viewmodels:DayViewModel">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <CollectionView x:Name="DaysCollectionView"
+                            SelectionMode="Single"
+                            ItemSizingStrategy="MeasureAllItems"
+                            Style="{StaticResource DayCollectionView}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackLayout Style="{StaticResource DayStackLayout}">
+
+                            <Frame Style="{StaticResource DateFrame}">
+                                <Label Text="{Binding Date}" Style="{StaticResource DateLabel}" />
+                            </Frame>
+
+                            <Frame Padding="0">
+                                
+                                <StackLayout BindableLayout.ItemsSource="{Binding Lessons}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout x:DataType="viewmodels:LessonViewModel">
+                                                <Label Text="{Binding Preview}" />
+                                                <Label Text="{Binding Name}" />
+                                                <Label Text="{Binding Teacher}" />
+                                                <Label Text="{Binding Classroom}" />
+                                                <Label Text="{Binding Territory}" />
+                                                <Label Text="{Binding Duration}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                                
+                            </Frame>
+                            
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <DatePicker x:Name="FirstDatePicker" />
+                <DatePicker x:Name="LastDatePicker" />
+                <Button x:Name="GetScheduleButton" 
+                        Text="Выбрать" />
+            </StackLayout>
+        
+        </StackLayout>
+    </ContentPage.Content>
+    
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="DayCollectionView" TargetType="CollectionView">
+                <Setter Property="ItemSizingStrategy" Value="MeasureAllItems" />
+            </Style>
+
+            <Style x:Key="DayStackLayout" TargetType="StackLayout">
+            </Style>
+            
+            <Style x:Key="DateFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="PaleTurquoise" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="HeightRequest" Value="20" />
+            </Style>
+
+            <Style x:Key="DateLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+
+            <Style x:Key="LessonFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="PaleGoldenrod" />
+                <Setter Property="BorderColor" Value="Black" />
+            </Style>
+            
+            <Style x:Key="LessonFrameText" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+</ContentPage>
