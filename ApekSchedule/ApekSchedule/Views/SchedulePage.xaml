@@ -9,8 +9,6 @@
 
         <StackLayout>
             <CollectionView x:Name="DaysCollectionView"
-                            SelectionMode="Single"
-                            ItemSizingStrategy="MeasureAllItems"
                             Style="{StaticResource DayCollectionView}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
@@ -25,19 +23,19 @@
                                 <Label Text="{Binding Date}" Style="{StaticResource DateLabel}" />
                             </Frame>
 
-                            <Frame Padding="0">
+                            <Frame Style="{StaticResource LessonsFrame}">
                                 
                                 <StackLayout BindableLayout.ItemsSource="{Binding Lessons}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <StackLayout x:DataType="viewmodels:LessonViewModel">
-                                                <Label Text="{Binding Preview}" />
-                                                <Label Text="{Binding Name}" />
-                                                <Label Text="{Binding Teacher}" />
-                                                <Label Text="{Binding Classroom}" />
-                                                <Label Text="{Binding Territory}" />
-                                                <Label Text="{Binding Duration}" />
-                                            </StackLayout>
+                                            <Frame Style="{StaticResource LessonFrame}">
+                                                <StackLayout x:DataType="viewmodels:LessonViewModel">
+                                                    <Label Text="{Binding Preview}"   Style="{StaticResource StandartLessonLabel}" />
+                                                    <Label Text="{Binding Name}"      Style="{StaticResource StandartLessonLabel}" />
+                                                    <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}" />
+                                                    <Label Text="{Binding Territory}" Style="{StaticResource StandartLessonLabel}" />
+                                                </StackLayout>
+                                            </Frame>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
@@ -71,10 +69,13 @@
             </Style>
 
             <Style x:Key="DayStackLayout" TargetType="StackLayout">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             
             <Style x:Key="DateFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="PaleTurquoise" />
+                <Setter Property="BackgroundColor" Value="#99b2ff" />
                 <Setter Property="BorderColor" Value="Black" />
                 <Setter Property="HeightRequest" Value="20" />
             </Style>
@@ -83,16 +84,22 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
             </Style>
 
+
+            <Style x:Key="LessonsFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
 
             <Style x:Key="LessonFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="PaleGoldenrod" />
+                <Setter Property="BackgroundColor" Value="#ffe699" />
                 <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="HasShadow" Value="True" />
             </Style>
             
-            <Style x:Key="LessonFrameText" TargetType="Label">
+            <Style x:Key="StandartLessonLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>

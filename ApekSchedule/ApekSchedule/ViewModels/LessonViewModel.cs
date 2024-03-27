@@ -10,7 +10,7 @@ namespace ApekSchedule.ViewModels
 	public class LessonViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
-		private Lesson lesson;
+		private readonly Lesson lesson;
 
 		public LessonViewModel() { lesson = new Lesson(); }
 		public LessonViewModel(Lesson lesson)
@@ -20,7 +20,7 @@ namespace ApekSchedule.ViewModels
 
 		public string Preview
 		{
-			get => $"{lesson.Number}. ({lesson.StartTime:hh\\:mm}-{lesson.EndTime:hh\\:mm})";
+			get => $"{lesson.Number}. ({lesson.StartTime:hh\\:mm}-{lesson.EndTime:hh\\:mm}) ({lesson.Duration:hh\\:mm})";
 		}
 
 		public string Name
@@ -43,7 +43,7 @@ namespace ApekSchedule.ViewModels
 
 		public string Teacher
 		{
-			get => $"Преподаватель {lesson.Teacher}";
+			get => $"Преподаватель: {lesson.Teacher}";
 		}
 
 		public string Classroom
@@ -53,7 +53,7 @@ namespace ApekSchedule.ViewModels
 
 		public string Territory
 		{
-			get => lesson.Territory;
+			get => $"{Classroom} | {lesson.Territory}";
 		}
 
 		public string Duration

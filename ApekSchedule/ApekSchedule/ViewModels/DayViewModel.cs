@@ -5,13 +5,14 @@ using System.Text;
 using System.ComponentModel;
 using ApekSchedule.Models;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace ApekSchedule.ViewModels
 {
 	public class DayViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
-		private Day _day;
+		private readonly Day _day;
 		private ObservableCollection<LessonViewModel> _lessons;
 
 
@@ -29,16 +30,13 @@ namespace ApekSchedule.ViewModels
         }
 
 
-		public DateTime Date
+		public string Date
 		{
-			get { return _day.Date; }
-			set
+			get
 			{
-				if (_day.Date != value)
-				{
-					_day.Date = value;
-					OnPropertyChanged(nameof(Date));
-				}
+				DayOfWeek cDay = _day.Date.DayOfWeek;
+				string dayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(cDay);
+				return $"{_day.Date:d}, {dayOfWeek}";
 			}
 		}
 
@@ -54,8 +52,7 @@ namespace ApekSchedule.ViewModels
 
 		protected void OnPropertyChanged(string propertyName)
 		{
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
