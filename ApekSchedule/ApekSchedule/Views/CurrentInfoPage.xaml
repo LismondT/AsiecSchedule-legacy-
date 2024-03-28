@@ -3,15 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ApekSchedule.Views.CurrentInfoPage">
     <ContentPage.Content>
-        <Frame x:Name="CurrentInfoFrame"
-               Style="{StaticResource CurrentLessonFrame}">
-            <StackLayout>
-                <Label x:Name="CurrentInfoLabel"
-                       Style="{StaticResource LessonInfoLabel}" />
-                <Label x:Name="EndTimerLabel"
-                       Style="{StaticResource CurrentEndTimer}" />
-            </StackLayout>
-        </Frame>
+        <StackLayout>
+            <Label x:Name="TimersCountLabel" />
+            <TimePicker x:Name="DatePicker" VerticalOptions="Center" />
+            <Button x:Name="SetTimeButton" Text="SetTime" Clicked="SetTimeButton_Clicked" VerticalOptions="End" />
+            <Button Text="Debug" Clicked="DebugButton_Clicked" />
+            
+            <Frame x:Name="CurrentInfoFrame"
+                   Style="{StaticResource CurrentLessonFrame}" >
+                <StackLayout VerticalOptions="FillAndExpand">
+                    
+                    <Label Text="Сейчас:"
+                           Style="{StaticResource CurrentLessonHeaderLabel}" />
+                    
+                    <Frame Style="{StaticResource CurrentLessonInfoFrame}">
+                        <StackLayout>
+                            <Label x:Name="CurrentLessonNameLabel"     Style="{StaticResource CurrentLessonLabel}"    />
+                            <Label x:Name="CurrentLessonTeacherLabel"  Style="{StaticResource CurrentLessonLabel}"    />
+                            <Label x:Name="CurrentLessonClassroomLabel" Style="{StaticResource CurrentLessonLabel}"    />
+                            <Label x:Name="CurrentLessonTimeLabel"     Style="{StaticResource CurrentLessonLabel}"    />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Frame x:Name="EndTimerFrame"
+                           Style="{StaticResource CurrentLessonEndTimerFrame}">
+                        <Label x:Name="EndTimerLabel" Style="{StaticResource CurrentLessonEndTimer}" />
+                    </Frame>
+                    
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
     </ContentPage.Content>
     
     <ContentPage.Resources>
@@ -19,16 +41,39 @@
             <Style x:Key="CurrentLessonFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="BorderColor" Value="Snow" />
-                <Setter Property="HeightRequest" Value="20" />
             </Style>
-            <Style x:Key="LessonInfoLabel" TargetType="Label">
+            
+   
+            
+            <Style x:Key="CurrentLessonHeaderLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            
+            
+            <Style x:Key="CurrentLessonInfoFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            
+            <Style x:Key="CurrentLessonLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            
+
+            <Style x:Key="CurrentLessonEndTimerFrame" TargetType="Frame">
+                
+            </Style>
+            
+            <Style x:Key="CurrentLessonEndTimer" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="25" />
-                <Setter Property="TextColor" Value="Red" />
-            </Style>
-            <Style x:Key="CurrentEndTimer" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="Black" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

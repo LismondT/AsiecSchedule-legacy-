@@ -75,7 +75,7 @@
             </Style>
             
             <Style x:Key="DateFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#99b2ff" />
+                <Setter Property="BackgroundColor" Value="#123C69" />
                 <Setter Property="BorderColor" Value="Black" />
                 <Setter Property="HeightRequest" Value="20" />
             </Style>
@@ -94,7 +94,7 @@
             </Style>
 
             <Style x:Key="LessonFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#ffe699" />
+                <Setter Property="BackgroundColor" Value="#EDC7B7" />
                 <Setter Property="BorderColor" Value="Black" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
