@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ApekSchedule
+namespace ApekSchedule.Themes
 {
-	public partial class AppShell : Shell
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class LightTheme : ResourceDictionary
 	{
-		public AppShell()
+		public LightTheme ()
 		{
-			NavigationPage.SetHasNavigationBar(this, false);
-			SetNavBarIsVisible(this, false);
 			InitializeComponent();
 		}
 	}

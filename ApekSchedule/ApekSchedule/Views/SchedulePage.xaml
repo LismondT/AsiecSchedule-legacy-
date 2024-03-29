@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ApekSchedule.Views.SchedulePage"
              xmlns:viewmodels="clr-namespace:ApekSchedule.ViewModels"
-             x:DataType="viewmodels:DayViewModel">
-
+             x:DataType="viewmodels:DayViewModel"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
 
-        <StackLayout>
+        <StackLayout Style="{StaticResource MainStackLayout}">
             <CollectionView x:Name="DaysCollectionView"
                             Style="{StaticResource DayCollectionView}">
                 <CollectionView.ItemsLayout>
@@ -48,13 +48,16 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="CenterAndExpand">
-                <DatePicker x:Name="FirstDatePicker" />
-                <DatePicker x:Name="LastDatePicker" />
-                <Button x:Name="GetScheduleButton" 
-                        Text="Выбрать" />
-            </StackLayout>
+            <Frame Style="{StaticResource SettingFrame}">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+                    <DatePicker x:Name="FirstDatePicker" TextColor="{DynamicResource PrimaryTextColor}" />
+                    <DatePicker x:Name="LastDatePicker"  TextColor="{DynamicResource PrimaryTextColor}" />
+                    <Button x:Name="GetScheduleButton" 
+                            Text="Выбрать"
+                            Style="{StaticResource ButtonStyle}"/>
+                </StackLayout>
+            </Frame>
         
         </StackLayout>
     </ContentPage.Content>
@@ -64,44 +67,108 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <Style x:Key="DayCollectionView" TargetType="CollectionView">
-                <Setter Property="ItemSizingStrategy" Value="MeasureAllItems" />
+            <Style x:Key="MainStackLayout"
+                   TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="Spacing"
+                        Value="0" />
             </Style>
 
-            <Style x:Key="DayStackLayout" TargetType="StackLayout">
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Margin" Value="0" />
-                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Style x:Key="DayCollectionView"
+                   TargetType="CollectionView">
+                <Setter Property="ItemSizingStrategy"
+                        Value="MeasureAllItems" />
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PageBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="DayStackLayout"
+                   TargetType="StackLayout">
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Margin"
+                        Value="0" />
+                <Setter Property="VerticalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PageBackgroundColor}" />
             </Style>
             
-            <Style x:Key="DateFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#123C69" />
-                <Setter Property="BorderColor" Value="Black" />
-                <Setter Property="HeightRequest" Value="20" />
+            <Style x:Key="DateFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="HeightRequest"
+                        Value="20" />
             </Style>
 
-            <Style x:Key="DateLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="White" />
+            <Style x:Key="DateLabel"
+                   TargetType="Label">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="FontSize"
+                        Value="16" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
             </Style>
 
 
-            <Style x:Key="LessonsFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="Padding" Value="0" />
+            <Style x:Key="LessonsFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="Padding"
+                        Value="0" />
             </Style>
 
-            <Style x:Key="LessonFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#EDC7B7" />
-                <Setter Property="BorderColor" Value="Black" />
-                <Setter Property="HasShadow" Value="True" />
+            <Style x:Key="LessonFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="HasShadow"
+                        Value="True" />
             </Style>
             
-            <Style x:Key="StandartLessonLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="FontAttributes" Value="Bold" />
+            <Style x:Key="StandartLessonLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+            </Style>
+
+            <Style x:Key="SettingFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="Padding"
+                        Value="0" />
+            </Style>
+
+            <Style x:Key="DatePicker"
+                   TargetType="DatePicker">
+                <Setter Property="TextColor"
+                        Value="{DynamicResource PrimaryTextColor}" />
+                
+            </Style>
+
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="Margin"
+                        Value="0, 10, 0, 10" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

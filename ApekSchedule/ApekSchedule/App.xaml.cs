@@ -1,8 +1,6 @@
-﻿using System;
+﻿using ApekSchedule.Data;
+using System.Collections.Generic;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using ApekSchedule.Data;
 
 namespace ApekSchedule
 {
@@ -27,6 +25,7 @@ namespace ApekSchedule
 			InitializeComponent();
 
 			MainPage = new AppShell();
+
 		}
 
 		protected override void OnStart()
