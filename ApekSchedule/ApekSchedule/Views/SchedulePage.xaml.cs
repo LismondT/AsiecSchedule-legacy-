@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 
 using ApekSchedule.ViewModels;
 using ApekSchedule.Models;
+using Xamarin.Forms.StyleSheets;
 
 namespace ApekSchedule.Views
 {
@@ -24,8 +25,13 @@ namespace ApekSchedule.Views
 
 		protected override void OnAppearing()
 		{
+			FirstDatePicker.Date = DateTime.Now;
 			LastDatePicker.Date = DateTime.Now.AddDays(1);
 			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
+
+			StyleSheet styleSheet = new StyleSheet() { };
+
+			GetScheduleButton_Clicked(this, EventArgs.Empty);
 		}
 
 		private async void GetScheduleButton_Clicked(object sender, EventArgs e)
@@ -52,60 +58,5 @@ namespace ApekSchedule.Views
 
 			DaysCollectionView.ItemsSource = daysCollection;
 		}
-
-		//private void AddDay(Day day)
-		//{
-		//	DateTime date = day.Date;
-		//	string dateStr = date.ToString("dd.MM.yyyy");
-		//	string dayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(date.DayOfWeek);
-
-		//	Frame dayFrame = new Frame()
-		//	{
-		//		Style = (Style)Resources["DayFrame"],
-		//		Content = new Label()
-		//		{
-		//			Style = (Style)Resources["DayFrameDateLabel"],
-		//			Text = $"{dateStr}, {dayOfWeek}",
-		//		}
-		//	};
-
-		//	//ScheduleMain.Children.Add(dayFrame);
-
-		//	foreach (var lesson in day.Lessons)
-		//	{
-		//		AddLesson(lesson);
-		//	}
-		//}
-
-
-
-		//private void AddLesson(Lesson lesson)
-		//{
-		//	string startTime = lesson.StartTime.ToString("hh\\:mm");
-		//	string endTime = lesson.EndTime.ToString("hh\\:mm");
-		//	string previewText = $"{lesson.Number}. ({startTime}-{endTime})";
-		//	string nameText = $"Пара: {lesson.Name}";
-		//	string teacherText = $"Преподаватель: {lesson.Teacher}";
-		//	string classroomText = $"Аудитория: {lesson.Classroom}";
-		//	string territoryText = lesson.Territory;
-
-		//	Frame lessonFrame = new Frame()
-		//	{
-		//		Style = (Style)Resources["LessonFrame"],
-		//		Content = new StackLayout()
-		//		{
-		//			Children =
-		//			{
-		//				new Label() { Text = previewText, Style = (Style)Resources["LessonFrameText"] },
-		//				new Label() { Text = nameText, Style = (Style)Resources["LessonFrameText"] },
-		//				new Label() { Text = teacherText, Style = (Style)Resources["LessonFrameText"] },
-		//				new Label() { Text = classroomText, Style =(Style) Resources["LessonFrameText"] },
-		//				new Label() { Text = territoryText, Style =(Style) Resources["LessonFrameText"] },
-		//			}
-		//		}
-		//	};
-
-		//	//ScheduleMain.Children.Add(lessonFrame);
-		//}
 	}
 }

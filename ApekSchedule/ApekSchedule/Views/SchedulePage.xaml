@@ -149,7 +149,7 @@
                 <Setter Property="BackgroundColor"
                         Value="{DynamicResource PageBackgroundColor}" />
                 <Setter Property="BorderColor"
-                        Value="{DynamicResource SecondaryColor}" />
+                        Value="{DynamicResource PrimaryTextColor}" />
                 <Setter Property="Padding"
                         Value="0" />
             </Style>
@@ -158,7 +158,6 @@
                    TargetType="DatePicker">
                 <Setter Property="TextColor"
                         Value="{DynamicResource PrimaryTextColor}" />
-                
             </Style>
 
             <Style x:Key="ButtonStyle"

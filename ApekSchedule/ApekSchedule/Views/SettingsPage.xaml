@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ApekSchedule.Controls"
+             xmlns:data="clr-namespace:ApekSchedule.Data"
+             x:Class="ApekSchedule.Views.SettingsPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame Style="{StaticResource SettingNameFrame}">
+                <Label Text="Тема приложения"
+                       Style="{StaticResource SettingNameLabel}" />
+            </Frame>
+
+            <Frame Style="{StaticResource SettingFrame}">
+                <local:EnumPicker Title="Выберите тему:"
+                                  EnumType="{x:Type data:Theme}"
+                                  SelectedIndexChanged="OnThemePickerSelectionChanged" />
+            </Frame>
+        
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SettingNameFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource SecondaryColor}" />
+            </Style>
+            
+            <Style x:Key="SettingNameLabel"
+                   TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
+            </Style>
+
+            <Style x:Key="SettingFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource PrimaryColor}" />
+            </Style>
+
+            <Style x:Key="SettingPickerStyle"
+                   TargetType="Picker">
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

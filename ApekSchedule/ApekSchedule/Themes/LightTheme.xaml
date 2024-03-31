@@ -2,10 +2,10 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ApekSchedule.Themes.LightTheme">
-    <Color x:Key="PageBackgroundColor">#6C4AB6</Color>
-    <Color x:Key="NavigationBarColor">Black</Color>
-    <Color x:Key="PrimaryColor">#8D72E1</Color>
-    <Color x:Key="SecondaryColor">#8D9EFF</Color>
-    <Color x:Key="PrimaryTextColor">#B9E0FF</Color>
-    <Color x:Key="SecondaryTextColor">#B9E0FF</Color>
+    <Color x:Key="PageBackgroundColor">#F9F7F7</Color>
+    <Color x:Key="NavigationBarColor">#3F72AF</Color>
+    <Color x:Key="PrimaryColor">#DBE2EF</Color>
+    <Color x:Key="SecondaryColor">#3F72AF</Color>
+    <Color x:Key="PrimaryTextColor">#112D4E</Color>
+    <Color x:Key="SecondaryTextColor">#F9F7F7</Color>
 </ResourceDictionary>

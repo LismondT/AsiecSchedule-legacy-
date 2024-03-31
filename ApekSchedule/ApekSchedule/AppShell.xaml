@@ -5,10 +5,13 @@
       xmlns:views="clr-namespace:ApekSchedule.Views" xmlns:ApekSchedule="clr-namespace:ApekSchedule" x:DataType="ApekSchedule:AppShell">
     <TabBar>
         <ShellContent
-            Title="Schedule"
+            Title="Расписание"
             ContentTemplate="{DataTemplate views:SchedulePage}" />
         <ShellContent
-            Title="Info"
+            Title="Инфа"
             ContentTemplate="{DataTemplate views:CurrentInfoPage}" />
+        <ShellContent
+            Title="Настройки"
+            ContentTemplate="{DataTemplate views:SettingsPage}" />
     </TabBar>
 </Shell>
