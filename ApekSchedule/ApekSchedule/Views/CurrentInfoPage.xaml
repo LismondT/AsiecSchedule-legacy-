@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ApekSchedule.Views.CurrentInfoPage">
+             x:Class="ApekSchedule.Views.CurrentInfoPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="TimersCountLabel" />
@@ -39,15 +40,15 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="CurrentLessonFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="BorderColor" Value="Snow" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
             </Style>
             
    
             
             <Style x:Key="CurrentLessonHeaderLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
@@ -55,11 +56,12 @@
             
             
             <Style x:Key="CurrentLessonInfoFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
             </Style>
             
             <Style x:Key="CurrentLessonLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="16" />
             </Style>
@@ -67,13 +69,13 @@
             
 
             <Style x:Key="CurrentLessonEndTimerFrame" TargetType="Frame">
-                
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}" />
             </Style>
             
             <Style x:Key="CurrentLessonEndTimer" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="25" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

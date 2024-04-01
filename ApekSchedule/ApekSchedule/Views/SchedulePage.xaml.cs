@@ -29,8 +29,6 @@ namespace ApekSchedule.Views
 			LastDatePicker.Date = DateTime.Now.AddDays(1);
 			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
 
-			StyleSheet styleSheet = new StyleSheet() { };
-
 			GetScheduleButton_Clicked(this, EventArgs.Empty);
 		}
 

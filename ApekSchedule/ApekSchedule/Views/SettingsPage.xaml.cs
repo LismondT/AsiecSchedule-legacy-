@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace ApekSchedule.Views
 {
@@ -37,6 +38,21 @@ namespace ApekSchedule.Views
 						break;
 				}
 			}
+
+			var schedule = Shell.Current.Items[0].Items.FirstOrDefault(i => i.Title == "Test");
+
+			if (schedule != null)
+			{
+				ShellContent shellContent = new ShellContent()
+				{
+					Title = "Test",
+					ContentTemplate = new DataTemplate(typeof(SchedulePage)),
+				};
+
+				Shell.Current.Items[0].Items.Remove(schedule);
+				Shell.Current.Items[0].Items.Add(shellContent);
+			}
+
 		}
 	}
 }

@@ -45,9 +45,6 @@ namespace ApekSchedule.Views
 				return;
 			}
 
-			HideCurrentLessonInfo();
-			EndTimerFrame.IsVisible = true;
-
 			if (_currentDay.Lessons == null)
 			{
 				SetOnlyCurrentLessonName("Сегодня выходной");
@@ -98,8 +95,6 @@ namespace ApekSchedule.Views
 			{
 				SetOnlyCurrentLessonName("Пары закончились");
 			}
-
-			EndTimerFrame.IsVisible = false;
 		}
 
 		private void SetCurrentLessonInfo(Lesson currentLesson)
@@ -113,6 +108,7 @@ namespace ApekSchedule.Views
 			CurrentLessonTeacherLabel.IsVisible = true;
 			CurrentLessonClassroomLabel.IsVisible = true;
 			CurrentLessonTimeLabel.IsVisible = true;
+			EndTimerFrame.IsVisible = true;
 		}
 
 		private void SetOnlyCurrentLessonName(string name)
@@ -128,6 +124,7 @@ namespace ApekSchedule.Views
 			CurrentLessonTeacherLabel.IsVisible = false;
 			CurrentLessonClassroomLabel.IsVisible = false;
 			CurrentLessonTimeLabel.IsVisible = false;
+			EndTimerFrame.IsVisible = false;
 		}
 
 

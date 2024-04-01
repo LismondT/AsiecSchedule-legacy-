@@ -13,7 +13,6 @@ namespace ApekSchedule
 	{
 		public AppShell()
 		{
-			NavigationPage.SetHasNavigationBar(this, false);
 			SetNavBarIsVisible(this, false);
 			InitializeComponent();
 		}
