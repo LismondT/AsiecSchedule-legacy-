@@ -29,6 +29,8 @@ namespace ApekSchedule.Views
 			LastDatePicker.Date = DateTime.Now.AddDays(1);
 			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
 
+			SetThemeForDaysCollection(Application.Current.Resources.MergedDictionaries.FirstOrDefault());
+
 			GetScheduleButton_Clicked(this, EventArgs.Empty);
 		}
 
@@ -55,6 +57,11 @@ namespace ApekSchedule.Views
 			}
 
 			DaysCollectionView.ItemsSource = daysCollection;
+		}
+
+		public void SetThemeForDaysCollection(ResourceDictionary theme)
+		{
+			DaysCollectionView.ChangeTheme(theme);
 		}
 	}
 }

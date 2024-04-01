@@ -4,11 +4,15 @@
              x:Class="ApekSchedule.Views.SchedulePage"
              xmlns:viewmodels="clr-namespace:ApekSchedule.ViewModels"
              x:DataType="viewmodels:DayViewModel"
+             xmlns:controls="clr-namespace:ApekSchedule.Controls"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
 
         <StackLayout Style="{StaticResource MainStackLayout}">
-            <CollectionView x:Name="DaysCollectionView"
+
+            <controls:StyledCollectionView x:Name="DaysCollectionView" />
+
+            <!--<CollectionView x:Name="DaysCollectionView"
                             Style="{StaticResource DayCollectionView}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
@@ -46,7 +50,7 @@
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
             <Frame Style="{StaticResource SettingFrame}">
                 <StackLayout Orientation="Horizontal"
@@ -73,75 +77,6 @@
                         Value="{DynamicResource PageBackgroundColor}" />
                 <Setter Property="Spacing"
                         Value="0" />
-            </Style>
-
-            <Style x:Key="DayCollectionView"
-                   TargetType="CollectionView">
-                <Setter Property="ItemSizingStrategy"
-                        Value="MeasureAllItems" />
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource PageBackgroundColor}" />
-            </Style>
-
-            <Style x:Key="DayStackLayout"
-                   TargetType="StackLayout">
-                <Setter Property="Padding"
-                        Value="0" />
-                <Setter Property="Margin"
-                        Value="0" />
-                <Setter Property="VerticalOptions"
-                        Value="FillAndExpand" />
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource PageBackgroundColor}" />
-            </Style>
-            
-            <Style x:Key="DateFrame"
-                   TargetType="Frame">
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource SecondaryColor}" />
-                <Setter Property="BorderColor"
-                        Value="{DynamicResource SecondaryTextColor}" />
-                <Setter Property="HeightRequest"
-                        Value="20" />
-            </Style>
-
-            <Style x:Key="DateLabel"
-                   TargetType="Label">
-                <Setter Property="HorizontalOptions"
-                        Value="Center" />
-                <Setter Property="FontSize"
-                        Value="16" />
-                <Setter Property="FontAttributes"
-                        Value="Bold" />
-                <Setter Property="TextColor"
-                        Value="{DynamicResource SecondaryTextColor}" />
-            </Style>
-
-
-            <Style x:Key="LessonsFrame"
-                   TargetType="Frame">
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource PageBackgroundColor}" />
-                <Setter Property="Padding"
-                        Value="0" />
-            </Style>
-
-            <Style x:Key="LessonFrame"
-                   TargetType="Frame">
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource PrimaryColor}" />
-                <Setter Property="BorderColor"
-                        Value="{DynamicResource PrimaryTextColor}" />
-                <Setter Property="HasShadow"
-                        Value="True" />
-            </Style>
-            
-            <Style x:Key="StandartLessonLabel"
-                   TargetType="Label">
-                <Setter Property="TextColor"
-                        Value="{DynamicResource PrimaryTextColor}" />
-                <Setter Property="FontAttributes"
-                        Value="Bold" />
             </Style>
 
             <Style x:Key="SettingFrame"

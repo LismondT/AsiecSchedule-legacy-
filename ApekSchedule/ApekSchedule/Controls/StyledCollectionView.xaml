@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CollectionView xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:ApekSchedule.ViewModels" x:DataType="viewmodels:DayViewModel"
+                x:Class="ApekSchedule.Controls.StyledCollectionView"
+                BackgroundColor="Transparent"
+                ItemSizingStrategy="MeasureAllItems">
+    <CollectionView.Resources>
+        <ResourceDictionary Source="../Themes/DarkTheme.xaml" />
+        
+        <Style x:Key="DayStackLayout"
+       TargetType="StackLayout">
+            <Setter Property="Padding"
+            Value="0" />
+            <Setter Property="Margin"
+            Value="0" />
+            <Setter Property="VerticalOptions"
+            Value="FillAndExpand" />
+            <Setter Property="BackgroundColor"
+            Value="{DynamicResource PageBackgroundColor}" />
+        </Style>
+
+        <Style x:Key="DateFrame"
+       TargetType="Frame">
+            <Setter Property="BackgroundColor"
+            Value="{DynamicResource SecondaryColor}" />
+            <Setter Property="BorderColor"
+            Value="{DynamicResource SecondaryTextColor}" />
+            <Setter Property="HeightRequest"
+            Value="20" />
+        </Style>
+
+        <Style x:Key="DateLabel"
+       TargetType="Label">
+            <Setter Property="HorizontalOptions"
+            Value="Center" />
+            <Setter Property="FontSize"
+            Value="16" />
+            <Setter Property="FontAttributes"
+            Value="Bold" />
+            <Setter Property="TextColor"
+            Value="{DynamicResource SecondaryTextColor}" />
+        </Style>
+
+
+        <Style x:Key="LessonsFrame"
+       TargetType="Frame">
+            <Setter Property="BackgroundColor"
+            Value="{DynamicResource PageBackgroundColor}" />
+            <Setter Property="Padding"
+            Value="0" />
+        </Style>
+
+        <Style x:Key="LessonFrame"
+       TargetType="Frame">
+            <Setter Property="BackgroundColor"
+            Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="BorderColor"
+            Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="HasShadow"
+            Value="True" />
+        </Style>
+
+        <Style x:Key="StandartLessonLabel"
+       TargetType="Label">
+            <Setter Property="TextColor"
+            Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="FontAttributes"
+            Value="Bold" />
+        </Style>
+    </CollectionView.Resources>
+    <CollectionView.ItemsLayout>
+        <LinearItemsLayout Orientation="Vertical"
+                       ItemSpacing="10" />
+    </CollectionView.ItemsLayout>
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+
+            <StackLayout Style="{StaticResource DayStackLayout}">
+
+                <Frame Style="{StaticResource DateFrame}">
+                    <Label Text="{Binding Date}" Style="{StaticResource DateLabel}" />
+                </Frame>
+
+                <Frame Style="{StaticResource LessonsFrame}">
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding Lessons}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Style="{StaticResource LessonFrame}">
+                                    <StackLayout x:DataType="viewmodels:LessonViewModel">
+                                        <Label Text="{Binding Preview}"   Style="{StaticResource StandartLessonLabel}" />
+                                        <Label Text="{Binding Name}"      Style="{StaticResource StandartLessonLabel}" />
+                                        <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}" />
+                                        <Label Text="{Binding Territory}" Style="{StaticResource StandartLessonLabel}" />
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>

@@ -8,4 +8,5 @@
     <Color x:Key="SecondaryColor">#3F72AF</Color>
     <Color x:Key="PrimaryTextColor">#112D4E</Color>
     <Color x:Key="SecondaryTextColor">#F9F7F7</Color>
+    <Color x:Key="JustTest">#F9F7F7</Color>
 </ResourceDictionary>
