@@ -1,6 +1,8 @@
 ﻿using ApekSchedule.Data;
+using ApekSchedule.Themes;
 using System;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ApekSchedule
@@ -31,6 +33,28 @@ namespace ApekSchedule
 
 		protected override void OnStart()
 		{
+			if (Preferences.ContainsKey(SettingKeys.Theme))
+			{
+				Theme theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
+
+				ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+				if (mergedDictionaries != null)
+				{
+					mergedDictionaries.Clear();
+
+					switch (theme)
+					{
+						case Theme.Dark:
+							mergedDictionaries.Add(new DarkTheme());
+							break;
+						case Theme.Light:
+						default:
+							mergedDictionaries.Add(new LightTheme());
+							break;
+					}
+
+				}
+			}
 		}
 
 		protected override void OnSleep()

@@ -11,47 +11,6 @@
         <StackLayout Style="{StaticResource MainStackLayout}">
 
             <controls:StyledCollectionView x:Name="DaysCollectionView" />
-
-            <!--<CollectionView x:Name="DaysCollectionView"
-                            Style="{StaticResource DayCollectionView}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-
-                        <StackLayout Style="{StaticResource DayStackLayout}">
-
-                            <Frame Style="{StaticResource DateFrame}">
-                                <Label Text="{Binding Date}" Style="{StaticResource DateLabel}" />
-                            </Frame>
-
-                            <Frame Style="{StaticResource LessonsFrame}">
-                                
-                                <StackLayout BindableLayout.ItemsSource="{Binding Lessons}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame Style="{StaticResource LessonFrame}">
-                                                <StackLayout x:DataType="viewmodels:LessonViewModel">
-                                                    <Label Text="{Binding Preview}"   Style="{StaticResource StandartLessonLabel}" />
-                                                    <Label Text="{Binding Name}"      Style="{StaticResource StandartLessonLabel}" />
-                                                    <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}" />
-                                                    <Label Text="{Binding Territory}" Style="{StaticResource StandartLessonLabel}" />
-                                                </StackLayout>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
-                                
-                            </Frame>
-                            
-                        </StackLayout>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-
             <Frame Style="{StaticResource SettingFrame}">
                 <StackLayout Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">

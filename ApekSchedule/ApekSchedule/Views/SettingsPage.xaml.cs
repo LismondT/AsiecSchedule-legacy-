@@ -1,11 +1,11 @@
-﻿using ApekSchedule.Themes;
-using ApekSchedule.Data;
+﻿using ApekSchedule.Data;
+using ApekSchedule.Themes;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Linq;
 
 namespace ApekSchedule.Views
 {
@@ -15,6 +15,19 @@ namespace ApekSchedule.Views
 		public SettingsPage()
 		{
 			InitializeComponent();
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+
+			if (theme != null)
+			{
+				Resources.MergedDictionaries.Clear();
+				Resources.MergedDictionaries.Add(theme);
+			}
 		}
 
 		void OnThemePickerSelectionChanged(object sender, EventArgs e)
@@ -31,12 +44,15 @@ namespace ApekSchedule.Views
 				{
 					case Theme.Dark:
 						mergedDictionaries.Add(new DarkTheme());
+						Preferences.Set(SettingKeys.Theme, (int)Theme.Dark);
 						break;
 					case Theme.Light:
 					default:
 						mergedDictionaries.Add(new LightTheme());
+						Preferences.Set(SettingKeys.Theme, (int)Theme.Light);
 						break;
 				}
+				
 			}
 		}
 	}

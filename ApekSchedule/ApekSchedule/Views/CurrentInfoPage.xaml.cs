@@ -34,6 +34,14 @@ namespace ApekSchedule.Views
 			Schedule curDaySchedule = await App.AsiecParser.GetSchedule("9ИСиП231", DateTime.Now, DateTime.Now);
 			_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
 
+			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+
+			if (theme != null)
+			{
+				Resources.MergedDictionaries.Clear();
+				Resources.MergedDictionaries.Add(theme);
+			}
+
 			await SetCurrentInfo();
 		}
 
@@ -74,6 +82,7 @@ namespace ApekSchedule.Views
 					if (!is_lessonTime)
 					{
 						SetOnlyCurrentLessonName("Перемена");
+						EndTimerFrame.IsVisible = true;
 					}
 					else
 					{

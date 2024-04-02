@@ -20,7 +20,7 @@ namespace ApekSchedule.Controls
 			InitializeComponent ();
 		}
 
-		public void ChangeTheme(ResourceDictionary theme)
+		public void SetTheme(ResourceDictionary theme)
 		{
 			_resources = theme;
         }
