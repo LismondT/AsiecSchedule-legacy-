@@ -27,8 +27,6 @@ namespace ApekSchedule
 		{
 			InitializeComponent();
 
-			MainPage = new AppShell();
-
 			if (Preferences.ContainsKey(SettingKeys.Theme))
 			{
 				Theme theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
@@ -51,6 +49,8 @@ namespace ApekSchedule
 
 				}
 			}
+
+			MainPage = new AppShell();
 		}
 
 		protected override void OnStart()

@@ -5,7 +5,7 @@
        xmlns:ApekSchedule="clr-namespace:ApekSchedule"
        x:DataType="ApekSchedule:AppShell"
        x:Class="ApekSchedule.AppShell">
-    <TabBar Style="{DynamicResource TabbarStyle}">
+    <TabBar>
         <Tab Title="Расписание">
             <ShellContent ContentTemplate="{DataTemplate views:SchedulePage}" />
         </Tab>

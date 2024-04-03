@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApekSchedule.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,23 @@ namespace ApekSchedule
 	{
 		public AppShell()
 		{
-			SetNavBarIsVisible(this, false);
+
 			InitializeComponent();
+			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+			
+			SetNavBarIsVisible(this, false);
+
+			if (theme != null)
+			{
+				Color backgroundColor = (Color)theme["NavigationBarBackgroundColor"];
+				Color textColor = (Color)theme["NavigationBarSelectedTextColor"];
+				Color unselectedTextColor = (Color)theme["NavigationBarUnselectedTextColor"];
+
+
+				SetTabBarBackgroundColor(this, backgroundColor);
+				SetTabBarTitleColor(this, textColor);
+				SetTabBarUnselectedColor(this, unselectedTextColor);
+			}
 		}
 	}
 }

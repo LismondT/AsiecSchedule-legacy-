@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ApekSchedule.Themes.LightTheme">
     <Color x:Key="PageBackgroundColor">#F9F7F7</Color>
-    <Color x:Key="NavigationBarColor">#3F72AF</Color>
     <Color x:Key="PrimaryColor">#DBE2EF</Color>
     <Color x:Key="SecondaryColor">#3F72AF</Color>
     <Color x:Key="PrimaryTextColor">#112D4E</Color>
     <Color x:Key="SecondaryTextColor">#F9F7F7</Color>
-    <Color x:Key="JustTest">#F9F7F7</Color>
+
+    <Color x:Key="NavigationBarBackgroundColor">#F9F7F7</Color>
+    <Color x:Key="NavigationBarSelectedTextColor">#3F72AF</Color>
+    <Color x:Key="NavigationBarUnselectedTextColor">#112D4E</Color>
 </ResourceDictionary>

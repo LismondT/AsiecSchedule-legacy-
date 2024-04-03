@@ -5,11 +5,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="TimersCountLabel" />
-            <TimePicker x:Name="DatePicker" VerticalOptions="Center" />
-            <Button x:Name="SetTimeButton" Text="SetTime" Clicked="SetTimeButton_Clicked" VerticalOptions="End" />
-            <Button Text="Debug" Clicked="DebugButton_Clicked" />
-            
+
             <Frame x:Name="CurrentInfoFrame"
                    Style="{StaticResource CurrentLessonFrame}"
                    IsVisible="False">

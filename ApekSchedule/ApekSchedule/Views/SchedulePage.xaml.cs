@@ -21,6 +21,7 @@ namespace ApekSchedule.Views
 		public SchedulePage()
 		{
 			InitializeComponent();
+
 		}
 
 		protected override void OnAppearing()

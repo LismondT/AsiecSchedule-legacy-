@@ -16,8 +16,6 @@ namespace ApekSchedule.Views
 	{
 		private static Day _currentDay;
 
-		private bool _isDebug;
-
 		public static Day CurrentDay
 		{
 			set => _currentDay = value;
@@ -26,7 +24,6 @@ namespace ApekSchedule.Views
 		public CurrentInfoPage()
 		{
 			InitializeComponent();
-			_isDebug = true;
 		}
 
 		protected async override void OnAppearing()
@@ -63,7 +60,7 @@ namespace ApekSchedule.Views
 			TimeSpan prevEnd = TimeSpan.Zero;
 			TimeSpan firstTime = _currentDay.Lessons[0].StartTime;
 
-			TimeSpan currentTime = _isDebug ? DatePicker.Time : DateTime.Now.TimeOfDay;
+			TimeSpan currentTime = DateTime.Now.TimeOfDay;
 
 			foreach (Lesson lesson in _currentDay.Lessons)
 			{
@@ -142,7 +139,7 @@ namespace ApekSchedule.Views
 		{
 			Device.StartTimer(TimeSpan.FromSeconds(1), () =>
 			{
-				TimeSpan currentTime = _isDebug ? DatePicker.Time : DateTime.Now.TimeOfDay;
+				TimeSpan currentTime = DateTime.Now.TimeOfDay;
 				TimeSpan duration = end - currentTime;
 				EndTimerLabel.Text = duration.ToString(@"hh\:mm\:ss");
 
@@ -152,6 +149,7 @@ namespace ApekSchedule.Views
 					{
 						await SetCurrentInfo();
 					});
+
 					return false;
 				}
 
@@ -159,29 +157,6 @@ namespace ApekSchedule.Views
 			});
 
 			
-		}
-
-		private async void SetTimeButton_Clicked(object sender, EventArgs e)
-		{
-			await SetCurrentInfo();
-		}
-
-		private async void DebugButton_Clicked(object sender, EventArgs e)
-		{
-			if (_isDebug)
-			{
-				_isDebug = false;
-				DatePicker.IsVisible = false;
-				SetTimeButton.IsVisible = false;
-			}
-			else
-			{
-				_isDebug = true;
-				DatePicker.IsVisible = true;
-				SetTimeButton.IsVisible = true;
-			}
-
-			await SetCurrentInfo();
 		}
 	}
 }

@@ -27,6 +27,7 @@ namespace ApekSchedule.Views
 			{
 				Resources.MergedDictionaries.Clear();
 				Resources.MergedDictionaries.Add(theme);
+				ThemePicker.TitleColor = (Color)theme["PrimaryTextColor"];
 			}
 		}
 
