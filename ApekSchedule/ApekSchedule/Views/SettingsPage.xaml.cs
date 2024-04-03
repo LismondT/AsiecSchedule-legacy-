@@ -53,6 +53,7 @@ namespace ApekSchedule.Views
 						break;
 				}
 				
+				picker.TextColor = (Color)mergedDictionaries.FirstOrDefault()["PrimaryTextColor"];
 			}
 		}
 	}

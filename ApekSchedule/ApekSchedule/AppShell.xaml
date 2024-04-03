@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ApekSchedule.AppShell"
-      xmlns:views="clr-namespace:ApekSchedule.Views" xmlns:ApekSchedule="clr-namespace:ApekSchedule" x:DataType="ApekSchedule:AppShell">
-    <TabBar>
-        <ShellContent
-            Title="Расписание"
-            ContentTemplate="{DataTemplate views:SchedulePage}" />
-        <ShellContent
-            Title="Инфа"
-            ContentTemplate="{DataTemplate views:CurrentInfoPage}" />
-        <ShellContent
-            Title="Настройки"
-            ContentTemplate="{DataTemplate views:SettingsPage}" />
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:ApekSchedule.Views"
+       xmlns:ApekSchedule="clr-namespace:ApekSchedule"
+       x:DataType="ApekSchedule:AppShell"
+       x:Class="ApekSchedule.AppShell">
+    <TabBar Style="{DynamicResource TabbarStyle}">
+        <Tab Title="Расписание">
+            <ShellContent ContentTemplate="{DataTemplate views:SchedulePage}" />
+        </Tab>
+        <Tab Title="Инфа">
+            <ShellContent ContentTemplate="{DataTemplate views:CurrentInfoPage}" />
+        </Tab>
+        <Tab Title="Настройки">
+            <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
+        </Tab>
     </TabBar>
 </Shell>

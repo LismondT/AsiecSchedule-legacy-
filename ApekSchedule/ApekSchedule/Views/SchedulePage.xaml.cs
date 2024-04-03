@@ -25,18 +25,18 @@ namespace ApekSchedule.Views
 
 		protected override void OnAppearing()
 		{
-			FirstDatePicker.Date = DateTime.Now;
-			LastDatePicker.Date = DateTime.Now.AddDays(1);
-			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
-
 			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
 
 			if (theme != null)
 			{
-				DaysCollectionView.SetTheme(theme);
 				Resources.MergedDictionaries.Clear();
 				Resources.MergedDictionaries.Add(theme);
+				DaysCollectionView.SetTheme(theme);
 			}
+
+			FirstDatePicker.Date = DateTime.Now;
+			LastDatePicker.Date = DateTime.Now.AddDays(1);
+			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
 
 			GetScheduleButton_Clicked(this, EventArgs.Empty);
 		}

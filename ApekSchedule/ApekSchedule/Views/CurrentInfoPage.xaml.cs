@@ -31,9 +31,6 @@ namespace ApekSchedule.Views
 
 		protected async override void OnAppearing()
 		{
-			Schedule curDaySchedule = await App.AsiecParser.GetSchedule("9ИСиП231", DateTime.Now, DateTime.Now);
-			_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
-
 			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
 
 			if (theme != null)
@@ -42,7 +39,11 @@ namespace ApekSchedule.Views
 				Resources.MergedDictionaries.Add(theme);
 			}
 
+			Schedule curDaySchedule = await App.AsiecParser.GetSchedule("9ИСиП231", DateTime.Now, DateTime.Now);
+			_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
+
 			await SetCurrentInfo();
+			CurrentInfoFrame.IsVisible = true;
 		}
 
 		private async Task SetCurrentInfo()

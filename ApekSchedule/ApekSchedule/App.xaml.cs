@@ -29,15 +29,11 @@ namespace ApekSchedule
 
 			MainPage = new AppShell();
 
-		}
-
-		protected override void OnStart()
-		{
 			if (Preferences.ContainsKey(SettingKeys.Theme))
 			{
 				Theme theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
 
-				ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+				ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
 				if (mergedDictionaries != null)
 				{
 					mergedDictionaries.Clear();
@@ -55,6 +51,10 @@ namespace ApekSchedule
 
 				}
 			}
+		}
+
+		protected override void OnStart()
+		{
 		}
 
 		protected override void OnSleep()
