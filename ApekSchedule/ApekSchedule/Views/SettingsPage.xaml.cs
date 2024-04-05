@@ -53,8 +53,19 @@ namespace ApekSchedule.Views
 						Preferences.Set(SettingKeys.Theme, (int)Theme.Light);
 						break;
 				}
-				
-				picker.TextColor = (Color)mergedDictionaries.FirstOrDefault()["PrimaryTextColor"];
+
+				ResourceDictionary mDict = mergedDictionaries.FirstOrDefault();
+
+				Color PrimaryTextColor = (Color)mDict["PrimaryTextColor"];
+				Color NavBarBackgroundColor = (Color)mDict["NavigationBarBackgroundColor"];
+				Color NavBarUnselectedColor = (Color)mDict["NavigationBarUnselectedTextColor"];
+				Color NavBarSelectedColor = (Color)mDict["NavigationBarSelectedTextColor"];
+
+				picker.TextColor = PrimaryTextColor;
+
+				Shell.SetTabBarBackgroundColor(Shell.Current, NavBarBackgroundColor);
+				Shell.SetTabBarUnselectedColor(Shell.Current, NavBarUnselectedColor);
+				Shell.SetTabBarTitleColor(Shell.Current, NavBarSelectedColor);
 			}
 		}
 	}

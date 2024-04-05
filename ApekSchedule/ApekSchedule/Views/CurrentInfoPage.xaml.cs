@@ -145,11 +145,7 @@ namespace ApekSchedule.Views
 
 				if (duration.TotalSeconds <= 0)
 				{
-					Task.Run(async () =>
-					{
-						await SetCurrentInfo();
-					});
-
+					SetCurrentInfo();
 					return false;
 				}
 

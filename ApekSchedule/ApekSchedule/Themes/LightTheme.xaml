@@ -11,4 +11,6 @@
     <Color x:Key="NavigationBarBackgroundColor">#F9F7F7</Color>
     <Color x:Key="NavigationBarSelectedTextColor">#3F72AF</Color>
     <Color x:Key="NavigationBarUnselectedTextColor">#112D4E</Color>
+
+    <Color x:Key="DayDateFrameBorderColor">#112D4E</Color>
 </ResourceDictionary>

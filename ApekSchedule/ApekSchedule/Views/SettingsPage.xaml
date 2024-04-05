@@ -8,16 +8,21 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Frame Style="{StaticResource SettingNameFrame}">
-                <Label Text="Тема приложения"
-                       Style="{StaticResource SettingNameLabel}" />
+            <Frame Style="{StaticResource SettingHeader}">
+                <Label Text="Настройки"
+                       Style="{StaticResource SettingHeaderLabel}" />
             </Frame>
 
             <Frame Style="{StaticResource SettingFrame}">
-                <local:EnumPicker Title="Выберите тему:"
-                                  x:Name="ThemePicker"
-                                  EnumType="{x:Type data:Theme}"
-                                  SelectedIndexChanged="OnThemePickerSelectionChanged" />
+                <StackLayout Style="{StaticResource SettingStackLayout}" >
+                    <Label Text="Тема приложения: "
+                           Style="{StaticResource SettingLabel}"/>
+                    <local:EnumPicker Title="тема"
+                                      x:Name="ThemePicker"
+                                      EnumType="{x:Type data:Theme}"
+                                      SelectedIndexChanged="OnThemePickerSelectionChanged"
+                                      Style="{StaticResource SettingPickerStyle}"/>
+                </StackLayout>
             </Frame>
 
         </StackLayout>
@@ -25,30 +30,48 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <Style x:Key="SettingNameFrame"
+            <Style x:Key="SettingHeader"
                    TargetType="Frame">
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}" />
             </Style>
             
-            <Style x:Key="SettingNameLabel"
+
+            <Style x:Key="SettingHeaderLabel"
                    TargetType="Label">
-                <Setter Property="BackgroundColor"
-                        Value="Transparent" />
-                <Setter Property="TextColor"
-                        Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="18" />
             </Style>
 
+            
             <Style x:Key="SettingFrame"
                    TargetType="Frame">
-                <Setter Property="BackgroundColor"
-                        Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="Padding" Value="5" />
             </Style>
 
+
+            <Style x:Key="SettingStackLayout"
+                   TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+
+
+            <Style x:Key="SettingLabel"
+                   TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+            
+            
             <Style x:Key="SettingPickerStyle"
                    TargetType="Picker">
-                <Setter Property="BackgroundColor"
-                        Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
         </ResourceDictionary>

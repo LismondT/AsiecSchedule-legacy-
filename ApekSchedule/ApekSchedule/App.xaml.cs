@@ -27,27 +27,34 @@ namespace ApekSchedule
 		{
 			InitializeComponent();
 
+			ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
+			Theme theme;
+
 			if (Preferences.ContainsKey(SettingKeys.Theme))
 			{
-				Theme theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
+				theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
 
-				ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
-				if (mergedDictionaries != null)
+			}
+			else
+			{
+				theme = Theme.Light;
+			}
+
+			if (mergedDictionaries != null)
+			{
+				mergedDictionaries.Clear();
+
+				switch (theme)
 				{
-					mergedDictionaries.Clear();
-
-					switch (theme)
-					{
-						case Theme.Dark:
-							mergedDictionaries.Add(new DarkTheme());
-							break;
-						case Theme.Light:
-						default:
-							mergedDictionaries.Add(new LightTheme());
-							break;
-					}
-
+					case Theme.Dark:
+						mergedDictionaries.Add(new DarkTheme());
+						break;
+					case Theme.Light:
+					default:
+						mergedDictionaries.Add(new LightTheme());
+						break;
 				}
+
 			}
 
 			MainPage = new AppShell();
