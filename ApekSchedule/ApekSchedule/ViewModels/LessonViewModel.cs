@@ -20,7 +20,7 @@ namespace ApekSchedule.ViewModels
 
 		public string Preview
 		{
-			get => $"{lesson.Number}. ({lesson.StartTime:hh\\:mm}-{lesson.EndTime:hh\\:mm}) ({lesson.Duration:hh\\:mm})";
+			get => $"{lesson.Number}. ({lesson.StartTime:hh\\:mm}-{lesson.EndTime:hh\\:mm}) Длительность: {lesson.Duration:hh\\:mm}";
 		}
 
 		public string Name

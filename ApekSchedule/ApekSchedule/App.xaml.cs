@@ -1,4 +1,5 @@
 ﻿using ApekSchedule.Data;
+using ApekSchedule.Models;
 using ApekSchedule.Themes;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace ApekSchedule
 
 	public partial class App : Application
 	{
+		public static string RequestId { get; set; }
+		public static Schedule Schedule { get; set; }
+		
 		static AsiecParser asiecParser;
 		public static AsiecParser AsiecParser
 		{
@@ -57,11 +61,15 @@ namespace ApekSchedule
 
 			}
 
+			RequestId = Preferences.Get(SettingKeys.RequestId, "9ИСиП231");
+			Schedule = null;
+
 			MainPage = new AppShell();
 		}
 
 		protected override void OnStart()
 		{
+			
 		}
 
 		protected override void OnSleep()

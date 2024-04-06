@@ -12,6 +12,8 @@ using Xamarin.Forms.Xaml;
 using ApekSchedule.ViewModels;
 using ApekSchedule.Models;
 using Xamarin.Forms.StyleSheets;
+using Xamarin.Essentials;
+using ApekSchedule.Data;
 
 namespace ApekSchedule.Views
 {
@@ -21,10 +23,9 @@ namespace ApekSchedule.Views
 		public SchedulePage()
 		{
 			InitializeComponent();
-
 		}
 
-		protected override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
 
@@ -37,15 +38,20 @@ namespace ApekSchedule.Views
 
 			FirstDatePicker.Date = DateTime.Now;
 			LastDatePicker.Date = DateTime.Now.AddDays(1);
-			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
+			
+			if (App.Schedule == null)
+				App.Schedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now.AddDays(1));
 
-			GetScheduleButton_Clicked(this, EventArgs.Empty);
+			LoadSchedule(App.Schedule);
+
+			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
 		}
 
 		private async void GetScheduleButton_Clicked(object sender, EventArgs e)
 		{
 			DateTime firstDate = FirstDatePicker.Date;
 			DateTime lastDate = LastDatePicker.Date;
+			string requestId = App.RequestId;
 
 			if (firstDate > lastDate)
 			{
@@ -53,13 +59,19 @@ namespace ApekSchedule.Views
 				return;
 			}
 
-			Schedule schedule = await App.AsiecParser.GetSchedule("9ИСиП231", firstDate, lastDate);
+			App.Schedule = await App.AsiecParser.GetSchedule(requestId, firstDate, lastDate);
+			
+			LoadSchedule(App.Schedule);
+		}
+
+		private void LoadSchedule(Schedule schedule)
+		{
 			List<DayViewModel> daysCollection = new List<DayViewModel>();
 
-			if (schedule.Days == null)
+			if (schedule == null || schedule.Days == null)
 				return;
 
-			foreach(Day day in schedule.Days)
+			foreach (Day day in schedule.Days)
 			{
 				daysCollection.Add(new DayViewModel(day));
 			}

@@ -27,11 +27,17 @@ namespace ApekSchedule.Views
 			{
 				Resources.MergedDictionaries.Clear();
 				Resources.MergedDictionaries.Add(theme);
-				ThemePicker.TitleColor = (Color)theme["PrimaryTextColor"];
+
+				ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
+				IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
 			}
+
+			IdPicker.ItemsSource = AsiecData.GroupId.Keys.ToList();
+			IdPicker.Title = Preferences.Get(SettingKeys.RequestId, "Выбрать");
 		}
 
-		void OnThemePickerSelectionChanged(object sender, EventArgs e)
+
+		private void ThemePicker_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Picker picker = sender as Picker;
 			Theme theme = (Theme)picker.SelectedItem;
@@ -47,6 +53,7 @@ namespace ApekSchedule.Views
 						mergedDictionaries.Add(new DarkTheme());
 						Preferences.Set(SettingKeys.Theme, (int)Theme.Dark);
 						break;
+
 					case Theme.Light:
 					default:
 						mergedDictionaries.Add(new LightTheme());
@@ -54,19 +61,32 @@ namespace ApekSchedule.Views
 						break;
 				}
 
-				ResourceDictionary mDict = mergedDictionaries.FirstOrDefault();
+				ThemeStyle.Load(mergedDictionaries.FirstOrDefault());
 
-				Color PrimaryTextColor = (Color)mDict["PrimaryTextColor"];
-				Color NavBarBackgroundColor = (Color)mDict["NavigationBarBackgroundColor"];
-				Color NavBarUnselectedColor = (Color)mDict["NavigationBarUnselectedTextColor"];
-				Color NavBarSelectedColor = (Color)mDict["NavigationBarSelectedTextColor"];
+				picker.TextColor = ThemeStyle.PrimaryTextColor;
+				IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
+				IdPicker.TextColor = ThemeStyle.PrimaryTextColor;
 
-				picker.TextColor = PrimaryTextColor;
-
-				Shell.SetTabBarBackgroundColor(Shell.Current, NavBarBackgroundColor);
-				Shell.SetTabBarUnselectedColor(Shell.Current, NavBarUnselectedColor);
-				Shell.SetTabBarTitleColor(Shell.Current, NavBarSelectedColor);
+				Shell.SetTabBarBackgroundColor(Shell.Current, ThemeStyle.NavigationBarBackgroundColor);
+				Shell.SetTabBarUnselectedColor(Shell.Current, ThemeStyle.NavigationBarUnselectedTextColor);
+				Shell.SetTabBarTitleColor(Shell.Current, ThemeStyle.NavigationBarSelectedTextColor);
 			}
 		}
-	}
+
+
+		private void IdPicker_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Picker picker = sender as Picker;
+			string selectedItem = (string)picker.SelectedItem;
+
+			if (selectedItem == "Выбрать" || selectedItem == null)
+				return;
+
+			picker.TextColor = ThemeStyle.PrimaryTextColor;
+
+			Preferences.Set(SettingKeys.RequestId, selectedItem);
+			App.RequestId = selectedItem;
+			App.Schedule = null;
+        }
+    }
 }

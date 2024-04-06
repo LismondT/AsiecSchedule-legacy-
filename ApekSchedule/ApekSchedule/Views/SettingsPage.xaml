@@ -20,7 +20,18 @@
                     <local:EnumPicker Title="тема"
                                       x:Name="ThemePicker"
                                       EnumType="{x:Type data:Theme}"
-                                      SelectedIndexChanged="OnThemePickerSelectionChanged"
+                                      SelectedIndexChanged="ThemePicker_SelectedIndexChanged"
+                                      Style="{StaticResource SettingPickerStyle}"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource SettingFrame}">
+                <StackLayout Style="{StaticResource SettingStackLayout}" >
+                    <Label Text="Группа: "
+                           Style="{StaticResource SettingLabel}"/>
+                    <Picker Title="выбрать"
+                                      x:Name="IdPicker"
+                                      SelectedIndexChanged="IdPicker_SelectedIndexChanged"
                                       Style="{StaticResource SettingPickerStyle}"/>
                 </StackLayout>
             </Frame>
