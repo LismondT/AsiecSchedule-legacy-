@@ -27,14 +27,14 @@ namespace ApekSchedule.Views
 
 		protected override async void OnAppearing()
 		{
-			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+			//ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
 
-			if (theme != null)
-			{
+			//if (theme != null)
+			//{
 				Resources.MergedDictionaries.Clear();
-				Resources.MergedDictionaries.Add(theme);
-				DaysCollectionView.SetTheme(theme);
-			}
+				Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
+				//DaysCollectionView.SetTheme(theme);
+			//}
 
 			FirstDatePicker.Date = DateTime.Now;
 			LastDatePicker.Date = DateTime.Now.AddDays(1);

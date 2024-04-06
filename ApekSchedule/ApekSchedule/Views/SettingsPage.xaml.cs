@@ -43,34 +43,17 @@ namespace ApekSchedule.Views
 			Theme theme = (Theme)picker.SelectedItem;
 
 			ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-			if (mergedDictionaries != null)
-			{
-				mergedDictionaries.Clear();
 
-				switch (theme)
-				{
-					case Theme.Dark:
-						mergedDictionaries.Add(new DarkTheme());
-						Preferences.Set(SettingKeys.Theme, (int)Theme.Dark);
-						break;
+			ThemeStyle.SetTheme(ref mergedDictionaries, theme);
 
-					case Theme.Light:
-					default:
-						mergedDictionaries.Add(new LightTheme());
-						Preferences.Set(SettingKeys.Theme, (int)Theme.Light);
-						break;
-				}
 
-				ThemeStyle.Load(mergedDictionaries.FirstOrDefault());
+			picker.TextColor = ThemeStyle.PrimaryTextColor;
+			IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
+			IdPicker.TextColor = ThemeStyle.PrimaryTextColor;
 
-				picker.TextColor = ThemeStyle.PrimaryTextColor;
-				IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
-				IdPicker.TextColor = ThemeStyle.PrimaryTextColor;
-
-				Shell.SetTabBarBackgroundColor(Shell.Current, ThemeStyle.NavigationBarBackgroundColor);
-				Shell.SetTabBarUnselectedColor(Shell.Current, ThemeStyle.NavigationBarUnselectedTextColor);
-				Shell.SetTabBarTitleColor(Shell.Current, ThemeStyle.NavigationBarSelectedTextColor);
-			}
+			Shell.SetTabBarBackgroundColor(Shell.Current, ThemeStyle.NavigationBarBackgroundColor);
+			Shell.SetTabBarUnselectedColor(Shell.Current, ThemeStyle.NavigationBarUnselectedTextColor);
+			Shell.SetTabBarTitleColor(Shell.Current, ThemeStyle.NavigationBarSelectedTextColor);
 		}
 
 

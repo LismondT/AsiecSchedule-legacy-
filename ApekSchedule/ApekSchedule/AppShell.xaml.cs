@@ -16,21 +16,11 @@ namespace ApekSchedule
 		{
 
 			InitializeComponent();
-			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
 			
 			SetNavBarIsVisible(this, false);
-
-			if (theme != null)
-			{
-				Color backgroundColor = (Color)theme["NavigationBarBackgroundColor"];
-				Color textColor = (Color)theme["NavigationBarSelectedTextColor"];
-				Color unselectedTextColor = (Color)theme["NavigationBarUnselectedTextColor"];
-
-
-				SetTabBarBackgroundColor(this, backgroundColor);
-				SetTabBarTitleColor(this, textColor);
-				SetTabBarUnselectedColor(this, unselectedTextColor);
-			}
+			SetTabBarBackgroundColor(this, ThemeStyle.NavigationBarBackgroundColor);
+			SetTabBarTitleColor(this, ThemeStyle.NavigationBarSelectedTextColor);
+			SetTabBarUnselectedColor(this, ThemeStyle.NavigationBarUnselectedTextColor);
 		}
 	}
 }

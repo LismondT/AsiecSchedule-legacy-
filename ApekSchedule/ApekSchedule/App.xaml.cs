@@ -3,6 +3,7 @@ using ApekSchedule.Models;
 using ApekSchedule.Themes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -44,22 +45,7 @@ namespace ApekSchedule
 				theme = Theme.Light;
 			}
 
-			if (mergedDictionaries != null)
-			{
-				mergedDictionaries.Clear();
-
-				switch (theme)
-				{
-					case Theme.Dark:
-						mergedDictionaries.Add(new DarkTheme());
-						break;
-					case Theme.Light:
-					default:
-						mergedDictionaries.Add(new LightTheme());
-						break;
-				}
-
-			}
+			ThemeStyle.SetTheme(ref mergedDictionaries, theme);
 
 			RequestId = Preferences.Get(SettingKeys.RequestId, "9ИСиП231");
 			Schedule = null;

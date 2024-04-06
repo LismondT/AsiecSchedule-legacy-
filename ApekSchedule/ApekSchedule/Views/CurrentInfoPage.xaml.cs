@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ApekSchedule.ViewModels;
 using ApekSchedule.Models;
+using ApekSchedule.Data;
 
 namespace ApekSchedule.Views
 {
@@ -30,13 +31,8 @@ namespace ApekSchedule.Views
 		{
 			CurrentInfoFrame.IsVisible = false;
 
-			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
-
-			if (theme != null)
-			{
-				Resources.MergedDictionaries.Clear();
-				Resources.MergedDictionaries.Add(theme);
-			}
+			Resources.MergedDictionaries.Clear();
+			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
 			Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now);
 			_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
