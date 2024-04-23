@@ -40,7 +40,7 @@
         <Style x:Key="LessonFrame"
                TargetType="Frame">
             <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
-            <Setter Property="BorderColor" Value="{DynamicResource PrimaryTextColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource DayLessonFrameBorderColor}" />
             <Setter Property="HasShadow" Value="True" />
         </Style>
 
@@ -72,7 +72,11 @@
                             <DataTemplate>
                                 <Frame Style="{StaticResource LessonFrame}">
                                     <StackLayout x:DataType="viewmodels:LessonViewModel">
-                                        <Label Text="{Binding Preview}"   Style="{StaticResource StandartLessonLabel}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Preview}"   Style="{StaticResource StandartLessonLabel}" />
+                                            <Label Text="{Binding Duration}"  Style="{StaticResource StandartLessonLabel}"
+                                                   HorizontalOptions="EndAndExpand" />
+                                        </StackLayout>
                                         <Label Text="{Binding Name}"      Style="{StaticResource StandartLessonLabel}" />
                                         <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}" />
                                         <Label Text="{Binding Territory}" Style="{StaticResource StandartLessonLabel}" />

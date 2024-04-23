@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ApekSchedule.Themes.VintageTheme">
+    <Color x:Key="PageBackgroundColor">#E4DCCF</Color>
+    <Color x:Key="PrimaryColor">#F0EBE3</Color>
+    <Color x:Key="SecondaryColor">#576F72</Color>
+    <Color x:Key="PrimaryTextColor">#576F72</Color>
+    <Color x:Key="SecondaryTextColor">#E4DCCF</Color>
+
+    <Color x:Key="NavigationBarBackgroundColor">#576F72</Color>
+    <Color x:Key="NavigationBarSelectedTextColor">#F0EBE3</Color>
+    <Color x:Key="NavigationBarUnselectedTextColor">#7D9D9C</Color>
+
+    <Color x:Key="DayDateFrameBorderColor">#576F72</Color>
+    <Color x:Key="DayLessonFrameBorderColor">Transparent</Color>
+    <Color x:Key="ScheduleSetFrameBorderColor">Transparent</Color>
+</ResourceDictionary>

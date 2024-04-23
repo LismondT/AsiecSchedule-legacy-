@@ -21,18 +21,15 @@ namespace ApekSchedule.Views
 		{
 			base.OnAppearing();
 
-			ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+			Resources.MergedDictionaries.Clear();
+			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
-			if (theme != null)
-			{
-				Resources.MergedDictionaries.Clear();
-				Resources.MergedDictionaries.Add(theme);
-
-				ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
-				IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
-			}
+			ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
+			IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
 
 			IdPicker.ItemsSource = AsiecData.GroupId.Keys.ToList();
+			ThemePicker.ItemsSource = ThemeStyle.ThemesNames;
+
 			IdPicker.Title = Preferences.Get(SettingKeys.RequestId, "Выбрать");
 		}
 
@@ -40,12 +37,11 @@ namespace ApekSchedule.Views
 		private void ThemePicker_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			Picker picker = sender as Picker;
-			Theme theme = (Theme)picker.SelectedItem;
+			string theme = (string)picker.SelectedItem;
 
 			ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
 
 			ThemeStyle.SetTheme(ref mergedDictionaries, theme);
-
 
 			picker.TextColor = ThemeStyle.PrimaryTextColor;
 			IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;

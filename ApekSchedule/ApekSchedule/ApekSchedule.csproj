@@ -18,7 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Themes\VintageTheme.xaml.cs">
+      <DependentUpon>VintageTheme.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Controls\StyledCollectionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Themes\VintageTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Themes\DarkTheme.xaml">

@@ -14,7 +14,7 @@ namespace ApekSchedule.Themes
 	{
 		public DarkTheme ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }

@@ -34,10 +34,17 @@ namespace ApekSchedule.Views
 			Resources.MergedDictionaries.Clear();
 			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
-			Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now);
-			_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
-
-			await SetCurrentInfo();
+			if (App.RequestId != string.Empty)
+			{
+				Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now);
+				_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
+				await SetCurrentInfo();
+			}
+			else
+			{
+				SetOnlyCurrentLessonName("Группа не выбрана");
+			}
+			
 			CurrentInfoFrame.IsVisible = true;
 		}
 

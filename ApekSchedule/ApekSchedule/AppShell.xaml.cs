@@ -1,12 +1,6 @@
 ﻿using ApekSchedule.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ApekSchedule
 {
@@ -16,7 +10,7 @@ namespace ApekSchedule
 		{
 
 			InitializeComponent();
-			
+
 			SetNavBarIsVisible(this, false);
 			SetTabBarBackgroundColor(this, ThemeStyle.NavigationBarBackgroundColor);
 			SetTabBarTitleColor(this, ThemeStyle.NavigationBarSelectedTextColor);

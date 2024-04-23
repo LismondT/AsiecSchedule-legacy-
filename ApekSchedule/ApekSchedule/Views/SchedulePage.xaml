@@ -7,18 +7,26 @@
              xmlns:controls="clr-namespace:ApekSchedule.Controls"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-
         <StackLayout Style="{StaticResource MainStackLayout}">
-
+            
+            <Frame Padding="0"
+                    BackgroundColor="{DynamicResource SecondaryColor}">
+                <Label x:Name="IdLabel" Text="" Style="{StaticResource IdLabel}" />
+            </Frame>
+            
             <controls:StyledCollectionView x:Name="DaysCollectionView" />
+            
             <Frame Style="{StaticResource SettingFrame}">
-                <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="CenterAndExpand">
-                    <DatePicker x:Name="FirstDatePicker" TextColor="{DynamicResource PrimaryTextColor}" />
-                    <DatePicker x:Name="LastDatePicker"  TextColor="{DynamicResource PrimaryTextColor}" />
-                    <Button x:Name="GetScheduleButton" 
-                            Text="Выбрать"
-                            Style="{StaticResource ButtonStyle}"/>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                        <DatePicker x:Name="FirstDatePicker" TextColor="{DynamicResource PrimaryTextColor}" />
+                        <DatePicker x:Name="LastDatePicker"  TextColor="{DynamicResource PrimaryTextColor}" />
+                        <Button x:Name="GetScheduleButton" 
+                                Text="Выбрать"
+                                Style="{StaticResource ButtonStyle}"/>
+                    </StackLayout>
+
                 </StackLayout>
             </Frame>
         
@@ -38,12 +46,30 @@
                         Value="0" />
             </Style>
 
+            <Style x:Key="IdLabel" TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+                <Setter Property="TextColor"
+                        Value="{DynamicResource SecondaryTextColor}" />
+
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions"
+                        Value="EndAndExpand" />
+                
+                
+                
+            </Style>
+
             <Style x:Key="SettingFrame"
                    TargetType="Frame">
                 <Setter Property="BackgroundColor"
                         Value="{DynamicResource PageBackgroundColor}" />
                 <Setter Property="BorderColor"
-                        Value="{DynamicResource PrimaryTextColor}" />
+                        Value="{DynamicResource ScheduleSetFrameBorderColor}" />
                 <Setter Property="Padding"
                         Value="0" />
             </Style>

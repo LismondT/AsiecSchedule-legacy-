@@ -1,19 +1,10 @@
-﻿using System;
+﻿using ApekSchedule.Data;
+using ApekSchedule.Models;
+using ApekSchedule.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using ApekSchedule.ViewModels;
-using ApekSchedule.Models;
-using Xamarin.Forms.StyleSheets;
-using Xamarin.Essentials;
-using ApekSchedule.Data;
 
 namespace ApekSchedule.Views
 {
@@ -27,22 +18,20 @@ namespace ApekSchedule.Views
 
 		protected override async void OnAppearing()
 		{
-			//ResourceDictionary theme = Application.Current.Resources.MergedDictionaries.FirstOrDefault();
+			Resources.MergedDictionaries.Clear();
+			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
-			//if (theme != null)
-			//{
-				Resources.MergedDictionaries.Clear();
-				Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
-				//DaysCollectionView.SetTheme(theme);
-			//}
-
-			FirstDatePicker.Date = DateTime.Now;
-			LastDatePicker.Date = DateTime.Now.AddDays(1);
-			
-			if (App.Schedule == null)
+			if (App.Schedule == null && App.RequestId != string.Empty)
 				App.Schedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now.AddDays(1));
+			
+			IdLabel.Text = App.RequestId != string.Empty ? App.RequestId : "Выберите группу в настройках";
 
-			LoadSchedule(App.Schedule);
+			if (App.Schedule != null)
+			{
+				LoadSchedule(App.Schedule);
+				FirstDatePicker.Date = App.Schedule.FirstDate;
+				LastDatePicker.Date = App.Schedule.LastDate;
+			}
 
 			GetScheduleButton.Clicked += GetScheduleButton_Clicked;
 		}
@@ -60,7 +49,7 @@ namespace ApekSchedule.Views
 			}
 
 			App.Schedule = await App.AsiecParser.GetSchedule(requestId, firstDate, lastDate);
-			
+
 			LoadSchedule(App.Schedule);
 		}
 

@@ -33,21 +33,11 @@ namespace ApekSchedule
 			InitializeComponent();
 
 			ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
-			Theme theme;
-
-			if (Preferences.ContainsKey(SettingKeys.Theme))
-			{
-				theme = (Theme)Preferences.Get(SettingKeys.Theme, 0);
-
-			}
-			else
-			{
-				theme = Theme.Light;
-			}
+			string theme = Preferences.Get(SettingKeys.Theme, "Светлая");
 
 			ThemeStyle.SetTheme(ref mergedDictionaries, theme);
 
-			RequestId = Preferences.Get(SettingKeys.RequestId, "9ИСиП231");
+			RequestId = Preferences.Get(SettingKeys.RequestId, string.Empty);
 			Schedule = null;
 
 			MainPage = new AppShell();

@@ -8,14 +8,15 @@ using Xamarin.Forms;
 
 namespace ApekSchedule.Data
 {
-	public enum Theme
-	{
-		Light,
-		Dark
-	}
-
 	public class ThemeStyle
 	{
+		public static List<string> ThemesNames { get; } = new List<string>()
+		{
+			"Светлая",
+			"Тёмная",
+			"Винтаж"
+		};
+
 		public static ResourceDictionary ThemeDictionary { get; set; }
 		public static Color PageBackgroundColor { get; private set; }
 		public static Color PrimaryColor { get; private set; }
@@ -44,7 +45,7 @@ namespace ApekSchedule.Data
 			}
 		}
 
-		public static void SetTheme(ref ICollection<ResourceDictionary> mergedDictionaries, Theme theme)
+		public static void SetTheme(ref ICollection<ResourceDictionary> mergedDictionaries, string theme)
 		{
 			if (mergedDictionaries == null)
 				return;
@@ -53,17 +54,21 @@ namespace ApekSchedule.Data
 
 			switch (theme)
 			{
-				case Theme.Dark:
+				case "Тёмная":
 					mergedDictionaries.Add(new DarkTheme());
-					Preferences.Set(SettingKeys.Theme, (int)Theme.Dark);
 					break;
 
-				case Theme.Light:
+				case "Винтаж":
+					mergedDictionaries.Add(new VintageTheme());
+					break;
+
+				case "Светлая":
 				default:
 					mergedDictionaries.Add(new LightTheme());
-					Preferences.Set(SettingKeys.Theme, (int)Theme.Light);
 					break;
 			}
+
+			Preferences.Set(SettingKeys.Theme, theme);
 
 			Load(mergedDictionaries.FirstOrDefault());
 		}

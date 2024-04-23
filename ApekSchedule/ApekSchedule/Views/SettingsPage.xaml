@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ApekSchedule.Controls"
-             xmlns:data="clr-namespace:ApekSchedule.Data"
              x:Class="ApekSchedule.Views.SettingsPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
@@ -17,11 +15,10 @@
                 <StackLayout Style="{StaticResource SettingStackLayout}" >
                     <Label Text="Тема приложения: "
                            Style="{StaticResource SettingLabel}"/>
-                    <local:EnumPicker Title="тема"
-                                      x:Name="ThemePicker"
-                                      EnumType="{x:Type data:Theme}"
-                                      SelectedIndexChanged="ThemePicker_SelectedIndexChanged"
-                                      Style="{StaticResource SettingPickerStyle}"/>
+                    <Picker Title="тема"
+                            x:Name="ThemePicker"
+                            SelectedIndexChanged="ThemePicker_SelectedIndexChanged"
+                            Style="{StaticResource SettingPickerStyle}"/>
                 </StackLayout>
             </Frame>
 
