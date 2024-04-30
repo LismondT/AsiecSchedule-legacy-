@@ -16,7 +16,7 @@ namespace ApekSchedule.Converters
 
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (App.RequestType == AsiecData.RequestBy.GroupId)
+            if (AppSettings.RequestType == AsiecData.RequestBy.GroupId)
                 return false;
 
             return true;

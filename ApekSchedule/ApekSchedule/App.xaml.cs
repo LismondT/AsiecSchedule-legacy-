@@ -13,8 +13,8 @@ namespace ApekSchedule
 
 	public partial class App : Application
 	{
-		public static string RequestId { get; set; }
-		public static AsiecData.RequestBy RequestType { get; set; }
+		//public static string RequestId { get; set; }
+		//public static AsiecData.RequestBy RequestType { get; set; }
 		public static Schedule Schedule { get; set; }
 		
 		static AsiecParser asiecParser;
@@ -34,12 +34,12 @@ namespace ApekSchedule
 			InitializeComponent();
 
 			ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
-			string theme = Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.First());
+			//string theme = Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.First());
 
-			ThemeStyle.SetTheme(ref mergedDictionaries, theme);
+			ThemeStyle.SetTheme(ref mergedDictionaries, /*theme*/ AppSettings.Theme);
 
-			RequestId = Preferences.Get(SettingKeys.RequestId, string.Empty);
-			RequestType = (AsiecData.RequestBy)Preferences.Get(SettingKeys.RequestType, (int)AsiecData.RequestBy.GroupId);
+			//RequestId = Preferences.Get(SettingKeys.RequestId, string.Empty);
+			//RequestType = (AsiecData.RequestBy)Preferences.Get(SettingKeys.RequestType, (int)AsiecData.RequestBy.GroupId);
 			Schedule = null;
 
 			MainPage = new AppShell();

@@ -66,13 +66,13 @@ namespace ApekSchedule.Views
 
 			RequestBy type = RequestTypeStrToEnum[selectedItem];
 
-			Preferences.Set(SettingKeys.RequestType, (int)type);
-			Preferences.Set(SettingKeys.RequestId, string.Empty);
-			App.RequestType = type;
-			App.RequestId = string.Empty;
+			//Preferences.Set(SettingKeys.RequestType, (int)type);
+			//Preferences.Set(SettingKeys.RequestId, string.Empty);
+			AppSettings.RequestType = type;
+			AppSettings.RequestId = string.Empty;
 			
 			picker.TextColor = ThemeStyle.PrimaryTextColor;
-            IdPicker.ItemsSource = GetIdDictByRequestType(App.RequestType).Keys.ToArray();
+            IdPicker.ItemsSource = GetIdDictByRequestType(type).Keys.ToArray();
 			IdPicker.Title = "Выбрать";
 
 			UpdateIdChooseLabel();
@@ -89,24 +89,23 @@ namespace ApekSchedule.Views
 
 			picker.TextColor = ThemeStyle.PrimaryTextColor;
 
-			Preferences.Set(SettingKeys.RequestId, selectedItem);
-			App.RequestId = selectedItem;
+			AppSettings.RequestId = selectedItem;
 			App.Schedule = null;
         }
 
 
 		private void InitPickers()
 		{
-            string theme = Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.FirstOrDefault());
-            RequestBy requestType = (RequestBy)Preferences.Get(SettingKeys.RequestType, (int)RequestBy.GroupId);
+			string theme = AppSettings.Theme; /*Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.FirstOrDefault());*/
+			RequestBy requestType = AppSettings.RequestType; /*(RequestBy)Preferences.Get(SettingKeys.RequestType, (int)RequestBy.GroupId);*/
             string requestTypeName = RequestTypeStrToEnum.FirstOrDefault(x => x.Value == requestType).Key;
-            string requestId = Preferences.Get(SettingKeys.RequestId, "");
+			string requestId = AppSettings.RequestId; /*Preferences.Get(SettingKeys.RequestId, "");*/
 
             ThemePicker.ItemsSource = ThemeStyle.ThemesNames;
             ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
             ThemePicker.Title = theme;
 
-            IdPicker.ItemsSource = GetIdDictByRequestType(App.RequestType).Keys.ToArray();
+            IdPicker.ItemsSource = GetIdDictByRequestType(requestType).Keys.ToArray();
             IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
             IdPicker.Title = requestId;
 
@@ -120,7 +119,7 @@ namespace ApekSchedule.Views
 		{
 			string title = "";
 
-            switch (App.RequestType)
+            switch (AppSettings.RequestType)
             {
                 case RequestBy.GroupId: title = "Группа:";
                     break;

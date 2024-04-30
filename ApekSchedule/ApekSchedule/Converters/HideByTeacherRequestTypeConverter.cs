@@ -11,7 +11,7 @@ namespace ApekSchedule.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (App.RequestType == AsiecData.RequestBy.TeacherId)
+            if (AppSettings.RequestType == AsiecData.RequestBy.TeacherId)
                 return false;
 
             return true;

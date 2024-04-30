@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ApekSchedule.Data
 {
     public class AsiecData
     {
+        [DefaultValue(None)]
         public enum RequestBy
         {
+            None,
             GroupId,
             TeacherId,
             ClassroomId

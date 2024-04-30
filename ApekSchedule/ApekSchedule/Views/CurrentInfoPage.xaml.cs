@@ -34,9 +34,9 @@ namespace ApekSchedule.Views
 			Resources.MergedDictionaries.Clear();
 			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
-			if (App.RequestId != string.Empty)
+			if (AppSettings.RequestId != string.Empty)
 			{
-				Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, App.RequestType, DateTime.Now, DateTime.Now);
+				Schedule curDaySchedule = await App.AsiecParser.GetSchedule(AppSettings.RequestId, AppSettings.RequestType, DateTime.Now, DateTime.Now);
 				_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
 				await SetCurrentInfo();
 			}
