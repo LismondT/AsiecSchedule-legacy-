@@ -8,5 +8,6 @@ namespace ApekSchedule.Data
 	{
 		public const string Theme = "Theme";
 		public const string RequestId = "RequestId";
+		public const string RequestType = "RequestType";
 	}
 }

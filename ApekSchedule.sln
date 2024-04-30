@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApekSchedule.Android", "ApekSchedule\ApekSchedule.Android\ApekSchedule.Android.csproj", "{4A5DF059-C676-4C8E-B59F-81B85CC772FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApekSchedule", "ApekSchedule\ApekSchedule\ApekSchedule.csproj", "{8450FAF3-8016-4641-82A5-8E2F47746655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApekSchedule", "ApekSchedule\ApekSchedule\ApekSchedule.csproj", "{8450FAF3-8016-4641-82A5-8E2F47746655}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

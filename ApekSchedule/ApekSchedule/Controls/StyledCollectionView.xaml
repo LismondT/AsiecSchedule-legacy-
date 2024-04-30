@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CollectionView xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:ApekSchedule.ViewModels" x:DataType="viewmodels:DayViewModel"
+                xmlns:converters="clr-namespace:ApekSchedule.Converters"
                 x:Class="ApekSchedule.Controls.StyledCollectionView"
                 BackgroundColor="Transparent"
                 ItemSizingStrategy="MeasureAllItems">
@@ -77,9 +78,17 @@
                                             <Label Text="{Binding Duration}"  Style="{StaticResource StandartLessonLabel}"
                                                    HorizontalOptions="EndAndExpand" />
                                         </StackLayout>
+                                        
+                                        <Label Text="{Binding Group}"     Style="{StaticResource StandartLessonLabel}"
+                                               IsVisible="{Binding Converter={converters:HideByGroupRequestTypeConverter}}" />
+                                        
                                         <Label Text="{Binding Name}"      Style="{StaticResource StandartLessonLabel}" />
-                                        <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}" />
+                                        
+                                        <Label Text="{Binding Teacher}"   Style="{StaticResource StandartLessonLabel}"
+                                               IsVisible="{Binding Converter={converters:HideByTeacherRequestTypeConverter}}" />
+                                        
                                         <Label Text="{Binding Territory}" Style="{StaticResource StandartLessonLabel}" />
+
                                     </StackLayout>
                                 </Frame>
                             </DataTemplate>

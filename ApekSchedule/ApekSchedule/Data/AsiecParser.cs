@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using static ApekSchedule.Data.AsiecData;
+using System.Text.RegularExpressions;
 
 namespace ApekSchedule.Data
 {
@@ -22,27 +24,21 @@ namespace ApekSchedule.Data
 			client = new HttpClient(clientHandler);
 		}
 
-		public async Task<string> GetSheduleBody(string group, DateTime firstDate, DateTime secondDate)
+		public async Task<string> GetSheduleBody(string id, RequestBy type, DateTime firstDate, DateTime secondDate)
 		{
 			string firstDateFormat = firstDate.ToString("yyyy-MM-dd");
 			string secondDateFormat = secondDate.ToString("yyyy-MM-dd");
 
-			bool getGroupSuccess = AsiecData.GroupId.TryGetValue(group, out string groupId);
+			string requestId = GetValueByRequestType(id, type);
 
-			if (getGroupSuccess == false || groupId == null)
-			{
-				return "";
-			}
+			//bool getGroupSuccess = AsiecData.GroupId.TryGetValue(id, out string groupId);
 
-			var data = new Dictionary<string, string>
-			{
-				{ "dostup", "True" },
-				{ "gruppa", groupId },
-				{ "calendar", firstDateFormat },
-				{ "calendar2", secondDateFormat },
-				{ "Content-Type", "application/x-www-form-urlencoded" },
-				{ "ras", "GRUP" }
-			};
+			//if (getGroupSuccess == false || groupId == null)
+			//{
+			//	return "";
+			//}
+
+			Dictionary<string, string> data = FillContentByIdType(type, requestId, firstDateFormat, secondDateFormat);
 
 			var content = new FormUrlEncodedContent(data);
 
@@ -58,7 +54,51 @@ namespace ApekSchedule.Data
 			return body;
 		}
 
-		public async Task<Schedule> GetSchedule(string group, DateTime firstDate, DateTime secondDate)
+		private Dictionary<string, string> FillContentByIdType(RequestBy type, string id, string firstDate, string secondDate)
+		{
+			Dictionary<string, string> content;
+
+			string idKey;
+            string rasValue;
+
+            switch (type)
+            {
+                case RequestBy.GroupId:
+					idKey = "gruppa";
+                    rasValue = "GRUP";
+                    break;
+
+                case RequestBy.TeacherId:
+					idKey = "prepod";
+                    rasValue = "PREP";
+                    break;
+
+                case RequestBy.ClassroomId:
+					idKey = "auditoria";
+					rasValue = "AUD";
+                    break;
+
+                default:
+					idKey = "";
+                    rasValue = "";
+                    break;
+            }
+
+
+            content = new Dictionary<string, string>
+            {
+                { "dostup", "True" },
+                { idKey, id },
+                { "calendar", firstDate },
+                { "calendar2", secondDate },
+                { "Content-Type", "application/x-www-form-urlencoded" },
+                { "ras", rasValue }
+            };
+
+			return content;
+        }
+
+        public async Task<Schedule> GetSchedule(string id, RequestBy type, DateTime firstDate, DateTime secondDate)
 		{
 			Schedule schedule = new Schedule()
 			{
@@ -68,7 +108,7 @@ namespace ApekSchedule.Data
 			};
 
 			HtmlDocument document = new HtmlDocument();
-			string body = await GetSheduleBody(group, firstDate, secondDate);
+			string body = await GetSheduleBody(id, type, firstDate, secondDate);
 
 			document.LoadHtml(body);
 
@@ -158,7 +198,5 @@ namespace ApekSchedule.Data
 
 			return schedule;
 		}
-
-
-	}
+    }
 }

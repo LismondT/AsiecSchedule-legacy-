@@ -22,7 +22,7 @@ namespace ApekSchedule.Views
 			Resources.MergedDictionaries.Add(ThemeStyle.ThemeDictionary);
 
 			if (App.Schedule == null && App.RequestId != string.Empty)
-				App.Schedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now.AddDays(1));
+				App.Schedule = await App.AsiecParser.GetSchedule(App.RequestId, App.RequestType, DateTime.Now, DateTime.Now.AddDays(1));
 			
 			IdLabel.Text = App.RequestId != string.Empty ? App.RequestId : "Выберите группу в настройках";
 
@@ -41,6 +41,9 @@ namespace ApekSchedule.Views
 			DateTime firstDate = FirstDatePicker.Date;
 			DateTime lastDate = LastDatePicker.Date;
 			string requestId = App.RequestId;
+			AsiecData.RequestBy requestType = App.RequestType;
+
+			if (requestId == string.Empty) return;
 
 			if (firstDate > lastDate)
 			{
@@ -48,7 +51,7 @@ namespace ApekSchedule.Views
 				return;
 			}
 
-			App.Schedule = await App.AsiecParser.GetSchedule(requestId, firstDate, lastDate);
+			App.Schedule = await App.AsiecParser.GetSchedule(requestId, requestType, firstDate, lastDate);
 
 			LoadSchedule(App.Schedule);
 		}

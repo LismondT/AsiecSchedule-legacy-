@@ -36,7 +36,7 @@ namespace ApekSchedule.Views
 
 			if (App.RequestId != string.Empty)
 			{
-				Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, DateTime.Now, DateTime.Now);
+				Schedule curDaySchedule = await App.AsiecParser.GetSchedule(App.RequestId, App.RequestType, DateTime.Now, DateTime.Now);
 				_currentDay = curDaySchedule.Days.Count != 0 ? curDaySchedule.Days[0] : new Day() { Date = DateTime.Now };
 				await SetCurrentInfo();
 			}

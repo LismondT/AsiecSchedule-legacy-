@@ -23,13 +23,26 @@
             </Frame>
 
             <Frame Style="{StaticResource SettingFrame}">
-                <StackLayout Style="{StaticResource SettingStackLayout}" >
-                    <Label Text="Группа: "
-                           Style="{StaticResource SettingLabel}"/>
-                    <Picker Title="выбрать"
-                                      x:Name="IdPicker"
-                                      SelectedIndexChanged="IdPicker_SelectedIndexChanged"
-                                      Style="{StaticResource SettingPickerStyle}"/>
+                <StackLayout>
+                    
+                    <StackLayout Style="{StaticResource SettingStackLayout}">
+                        <Label Text="Расписание по: "
+                               Style="{StaticResource SettingLabel}" />
+                        <Picker Title="Выбрать"
+                                x:Name="RequestTypePicker"
+                                SelectedIndexChanged="RequestTypePicker_SelectedIndexChanged"
+                                Style="{StaticResource SettingPickerStyle}" />
+                    </StackLayout>
+                    
+                    <StackLayout Style="{StaticResource SettingStackLayout}" >
+                        <Label x:Name="IdChooseLabel"
+                               Style="{StaticResource SettingLabel}"/>
+                        <Picker Title="выбрать"
+                                x:Name="IdPicker"
+                                SelectedIndexChanged="IdPicker_SelectedIndexChanged"
+                                Style="{StaticResource SettingPickerStyle}" />
+                    </StackLayout>
+                
                 </StackLayout>
             </Frame>
 

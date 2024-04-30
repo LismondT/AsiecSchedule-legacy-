@@ -50,27 +50,23 @@ namespace ApekSchedule.Data
 			if (mergedDictionaries == null)
 				return;
 
+			ResourceDictionary themeDict;
+
 			mergedDictionaries.Clear();
 
 			switch (theme)
 			{
-				case "Тёмная":
-					mergedDictionaries.Add(new DarkTheme());
-					break;
-
-				case "Винтаж":
-					mergedDictionaries.Add(new VintageTheme());
-					break;
-
-				case "Светлая":
-				default:
-					mergedDictionaries.Add(new LightTheme());
-					break;
+				case "Тёмная": themeDict = new DarkTheme(); break;
+				case "Винтаж": themeDict = new VintageTheme(); break;
+                case "Светлая": themeDict = new LightTheme(); break;
+                
+				default: themeDict = new LightTheme(); break;
 			}
 
-			Preferences.Set(SettingKeys.Theme, theme);
-
+			mergedDictionaries.Add(themeDict);
 			Load(mergedDictionaries.FirstOrDefault());
+
+			Preferences.Set(SettingKeys.Theme, theme);
 		}
     }
 }
