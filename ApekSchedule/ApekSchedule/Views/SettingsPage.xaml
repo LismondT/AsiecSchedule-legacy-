@@ -34,7 +34,8 @@
                                 Style="{StaticResource SettingPickerStyle}" />
                     </StackLayout>
                     
-                    <StackLayout Style="{StaticResource SettingStackLayout}" >
+                    <StackLayout x:Name="IdChooseStackLayout"
+                                Style="{StaticResource SettingStackLayout}" >
                         <Label x:Name="IdChooseLabel"
                                Style="{StaticResource SettingLabel}"/>
                         <Picker Title="выбрать"

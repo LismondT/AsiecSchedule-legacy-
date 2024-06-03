@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Xamarin.Essentials;
 
 namespace ApekSchedule.Data
@@ -21,7 +22,19 @@ namespace ApekSchedule.Data
             get
             {
                 if (_theme == null)
-                    _theme = Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.First());
+                {
+                    try
+                    {
+                        _theme = Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.First());
+                    }
+                    catch (Exception)
+                    {
+                        string defaultValue = ThemeStyle.ThemesNames.First();
+                        Preferences.Set(SettingKeys.Theme, defaultValue);
+                        _theme = defaultValue;
+                    }
+                }
+
                 return _theme;
             }
             set
@@ -36,7 +49,17 @@ namespace ApekSchedule.Data
             get
             {
                 if (_requestId == null)
-                    _requestId = Preferences.Get(SettingKeys.RequestId, string.Empty);
+                {
+                    try
+                    {
+                        _requestId = Preferences.Get(SettingKeys.RequestId, string.Empty);
+                    }
+                    catch(Exception)
+                    {
+                        Preferences.Set(SettingKeys.RequestId, string.Empty);
+                        _requestId = string.Empty;
+                    }
+                }
 
                 return _requestId;
             }
@@ -52,7 +75,19 @@ namespace ApekSchedule.Data
             get
             {
                 if (_requestType == AsiecData.RequestBy.None)
-                    _requestType = (AsiecData.RequestBy)Preferences.Get(SettingKeys.RequestType, (int)AsiecData.RequestBy.None);
+                {
+                    try
+                    {
+                        _requestType = (AsiecData.RequestBy)Preferences.Get(SettingKeys.RequestType, (int)AsiecData.RequestBy.None);
+                    }
+                    catch (Exception)
+                    {
+                        AsiecData.RequestBy defaultValue = AsiecData.RequestBy.None;
+                        Preferences.Set(SettingKeys.RequestType, (int)defaultValue);
+                        _requestType = defaultValue;
+                    }
+                }
+
                 return _requestType;
             }
 

@@ -17,6 +17,7 @@ namespace ApekSchedule.Views
 		{
 			{ "группе", RequestBy.GroupId },
 			{ "преподавателю", RequestBy.TeacherId },
+			{ "аудитории", RequestBy.ClassroomId }
 		};
 
 		public SettingsPage()
@@ -66,8 +67,6 @@ namespace ApekSchedule.Views
 
 			RequestBy type = RequestTypeStrToEnum[selectedItem];
 
-			//Preferences.Set(SettingKeys.RequestType, (int)type);
-			//Preferences.Set(SettingKeys.RequestId, string.Empty);
 			AppSettings.RequestType = type;
 			AppSettings.RequestId = string.Empty;
 			
@@ -96,10 +95,10 @@ namespace ApekSchedule.Views
 
 		private void InitPickers()
 		{
-			string theme = AppSettings.Theme; /*Preferences.Get(SettingKeys.Theme, ThemeStyle.ThemesNames.FirstOrDefault());*/
-			RequestBy requestType = AppSettings.RequestType; /*(RequestBy)Preferences.Get(SettingKeys.RequestType, (int)RequestBy.GroupId);*/
+			string theme = AppSettings.Theme;
+			RequestBy requestType = AppSettings.RequestType;
             string requestTypeName = RequestTypeStrToEnum.FirstOrDefault(x => x.Value == requestType).Key;
-			string requestId = AppSettings.RequestId; /*Preferences.Get(SettingKeys.RequestId, "");*/
+			string requestId = AppSettings.RequestId;
 
             ThemePicker.ItemsSource = ThemeStyle.ThemesNames;
             ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
@@ -119,8 +118,14 @@ namespace ApekSchedule.Views
 		{
 			string title = "";
 
+			IdChooseStackLayout.IsVisible = true;
+
             switch (AppSettings.RequestType)
             {
+				case RequestBy.None:
+					IdChooseStackLayout.IsVisible = false;
+					break;
+
                 case RequestBy.GroupId: title = "Группа:";
                     break;
                 case RequestBy.TeacherId: title = "Преподаватель:";
