@@ -25,7 +25,8 @@
             <Frame Style="{StaticResource SettingFrame}">
                 <StackLayout>
                     
-                    <StackLayout Style="{StaticResource SettingStackLayout}">
+                    <StackLayout Style="{StaticResource SettingStackLayout}"
+                                 HorizontalOptions="FillAndExpand">
                         <Label Text="Расписание по: "
                                Style="{StaticResource SettingLabel}" />
                         <Picker Title="Выбрать"
@@ -35,7 +36,8 @@
                     </StackLayout>
                     
                     <StackLayout x:Name="IdChooseStackLayout"
-                                Style="{StaticResource SettingStackLayout}" >
+                                Style="{StaticResource SettingStackLayout}"
+                                 HorizontalOptions="FillAndExpand">
                         <Label x:Name="IdChooseLabel"
                                Style="{StaticResource SettingLabel}"/>
                         <Picker Title="выбрать"

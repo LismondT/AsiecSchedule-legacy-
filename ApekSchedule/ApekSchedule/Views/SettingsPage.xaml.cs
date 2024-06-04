@@ -1,4 +1,5 @@
-﻿using ApekSchedule.Data;
+﻿using ApekSchedule.Controls;
+using ApekSchedule.Data;
 using ApekSchedule.Themes;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,9 @@ namespace ApekSchedule.Views
 			
 			picker.TextColor = ThemeStyle.PrimaryTextColor;
             IdPicker.ItemsSource = GetIdDictByRequestType(type).Keys.ToArray();
+			
+			ControlsHelper.ResizePicker(ref IdPicker);
+
 			IdPicker.Title = "Выбрать";
 
 			UpdateIdChooseLabel();
@@ -103,14 +107,17 @@ namespace ApekSchedule.Views
             ThemePicker.ItemsSource = ThemeStyle.ThemesNames;
             ThemePicker.TitleColor = ThemeStyle.PrimaryTextColor;
             ThemePicker.Title = theme;
+			ControlsHelper.ResizePicker(ref ThemePicker);
 
             IdPicker.ItemsSource = GetIdDictByRequestType(requestType).Keys.ToArray();
             IdPicker.TitleColor = ThemeStyle.PrimaryTextColor;
             IdPicker.Title = requestId;
+			ControlsHelper.ResizePicker(ref IdPicker);
 
             RequestTypePicker.ItemsSource = RequestTypeStrToEnum.Keys.ToArray();
             RequestTypePicker.TitleColor = ThemeStyle.PrimaryTextColor;
             RequestTypePicker.Title = requestTypeName;
+			ControlsHelper.ResizePicker(ref RequestTypePicker);
         }
 
 
@@ -130,11 +137,12 @@ namespace ApekSchedule.Views
                     break;
                 case RequestBy.TeacherId: title = "Преподаватель:";
                     break;
-                case RequestBy.ClassroomId: title = "Аудитория";
+                case RequestBy.ClassroomId: title = "Аудитория:";
                     break;
-            }
+			}
 
 			IdChooseLabel.Text = title;
-        }
-    }
+			ControlsHelper.ResizeLabel(ref IdChooseLabel);
+		}
+	}
 }
